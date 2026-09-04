@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../includes/bootstrap.php';require_perm('students.manage');check_csrf();$e=$_POST['e']??'';$id=(int)($_POST['id']??0);if(!$e||!$id){http_response_code(400);exit('Invalid');}try{CrudService::restore($e,$id);$_SESSION['flash']=['success','Record restored'];}catch(Throwable $x){$_SESSION['flash']=['danger',$x->getMessage()];}redirect('recycle_bin.php');

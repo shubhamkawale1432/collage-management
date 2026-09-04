@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_role('Faculty');page_top('Faculty Examination Workspace');?><div class='card p-4'><a class='btn btn-primary' href='../examination/marks.php'>Enter marks</a> <a class='btn btn-outline-primary' href='../examination/exams.php'>View exams</a></div><?php page_bottom();

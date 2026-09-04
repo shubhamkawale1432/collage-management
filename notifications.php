@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/includes/bootstrap.php';require_login();$q=db()->prepare('SELECT * FROM notifications WHERE user_id=? ORDER BY id DESC LIMIT 50');$q->execute([actor_id()]);page_top('Notifications');?><div class='card p-3'><?php foreach($q as $n):?><div class='p-3 border-bottom <?=($n['is_read']?'':'bg-light')?>'><strong><?=e($n['title'])?></strong><div><?=e($n['message'])?></div><small class='text-muted'><?=e($n['created_at'])?></small></div><?php endforeach;?></div><?php page_bottom();

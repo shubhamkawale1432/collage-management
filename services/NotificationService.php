@@ -1,0 +1,2 @@
+<?php
+class NotificationService{public static function create($userId,$title,$message,$type='info',$link=null){$s=db()->prepare('INSERT INTO notifications(user_id,title,message,type,link) VALUES(?,?,?,?,?)');$s->execute([$userId,$title,$message,$type,$link]);return (int)db()->lastInsertId();}public static function broadcast($role,$title,$message,$type='info',$link=null){$q=db()->prepare('SELECT u.id FROM users u JOIN roles r ON r.id=u.role_id WHERE r.name=? AND u.status="active"');$q->execute([$role]);foreach($q as $u)self::create($u['id'],$title,$message,$type,$link);}}

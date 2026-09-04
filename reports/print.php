@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_login();page_top('Print Center');?><div class='card p-4 print-area'><h2>College Management Report</h2><p>Generated <?=date('d M Y H:i')?></p><hr><p>This print-friendly workspace can render executive, academic, finance and operational views.</p><button onclick='window.print()' class='btn btn-primary no-print'>Print</button></div><?php page_bottom();

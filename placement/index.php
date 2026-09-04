@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_role('Placement Officer');page_top('Career & Placement Center');?><div class='row g-3'><?php kpi('Companies',db()->query('SELECT COUNT(*) FROM companies')->fetchColumn(),'⌂');kpi('Open Jobs',db()->query("SELECT COUNT(*) FROM jobs WHERE status='Open'")->fetchColumn(),'↗');kpi('Applications',db()->query('SELECT COUNT(*) FROM job_applications')->fetchColumn(),'◉');kpi('Placements',db()->query('SELECT COUNT(*) FROM placements')->fetchColumn(),'★');?></div><?php page_bottom();

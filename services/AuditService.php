@@ -1,0 +1,2 @@
+<?php
+class AuditService{public static function log($action,$module,$record_id=null,$description=''){try{$u=current_user();$s=db()->prepare('INSERT INTO activity_logs(user_id,role_name,action,module,record_id,description,ip_address,user_agent) VALUES(?,?,?,?,?,?,?,?)');$s->execute([$u['id']??null,$u['role_name']??null,$action,$module,$record_id,$description,client_ip(),$_SERVER['HTTP_USER_AGENT']??'']);}catch(Throwable $e){}}}

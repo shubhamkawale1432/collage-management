@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../includes/bootstrap.php';require_login();check_csrf();$id=(int)($_POST['id']??0);$q=db()->prepare('UPDATE notifications SET is_read=1 WHERE id=? AND user_id=?');$q->execute([$id,actor_id()]);json_response(['success'=>true]);

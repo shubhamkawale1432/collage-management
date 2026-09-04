@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_role('Super Admin','College Admin','HOD');page_top('Master Data');?><div class='row g-3'><?php foreach(['departments','subjects'] as $e):?><div class='col-md-4'><div class='card p-4'><h5><?=e(ucwords($e))?></h5><a class='btn btn-primary' href='entity.php?e=<?=$e?>'>Manage</a></div></div><?php endforeach;?></div><?php page_bottom();

@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_role('Librarian');page_top('Digital Library Center');?><div class='row g-3'><?php kpi('Books',db()->query('SELECT COUNT(*) FROM books')->fetchColumn(),'▤');kpi('Copies',db()->query('SELECT COUNT(*) FROM book_copies')->fetchColumn(),'▱');kpi('Issued',db()->query("SELECT COUNT(*) FROM library_transactions WHERE status='Issued'")->fetchColumn(),'↗');kpi('Fines',db()->query("SELECT COALESCE(SUM(amount),0) FROM library_fines WHERE status='Unpaid'")->fetchColumn(),'₹');?></div><?php page_bottom();

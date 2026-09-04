@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_login();check_csrf();$e=$_POST['e']??'';$id=(int)($_POST['id']??0);$GLOBALS['ENTITY_MAP']=require __DIR__.'/entity_map.php';if(!isset($GLOBALS['ENTITY_MAP'][$e]))exit('Invalid');require_perm($GLOBALS['ENTITY_MAP'][$e]['perm']);CrudService::delete($e,$id);$_SESSION['flash']=['success','Record deleted'];redirect('entity.php?e='.urlencode($e));

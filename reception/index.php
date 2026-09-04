@@ -1,0 +1,2 @@
+<?php
+require_once __DIR__.'/../includes/bootstrap.php';require_role('Reception/Operator');page_top('Front Desk & Admissions');?><div class='card p-4'><a class='btn btn-primary' href='../admin/entity.php?e=admissions'>Manage online admissions</a></div><?php page_bottom();
