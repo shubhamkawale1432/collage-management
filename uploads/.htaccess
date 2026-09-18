@@ -1,4 +1,9 @@
 Options -Indexes
-<FilesMatch "\.(php|phtml|phar|cgi|pl|py|sh)$">
+DirectoryIndex disabled
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options nosniff
+  Header always set Cache-Control "no-store"
+</IfModule>
+<FilesMatch ".*">
   Require all denied
 </FilesMatch>
