@@ -2,7 +2,10 @@
 declare(strict_types=1);
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
-    $isHttps = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+
+    session_name('COLLEGESESSID');
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
@@ -10,6 +13,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         'httponly' => true,
         'samesite' => 'Lax',
     ]);
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies', '1');
     session_start();
 }
 
@@ -22,9 +27,8 @@ header('Pragma: no-cache');
 
 $app = require __DIR__ . '/../config/app.php';
 $GLOBALS['app'] = $app;
-
 date_default_timezone_set($app['timezone'] ?? 'Asia/Kolkata');
-define('BASE_URL', rtrim((string)($app['base_url'] ?? ''), '/'));
+define('BASE_URL', rtrim((string) ($app['base_url'] ?? ''), '/'));
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../helpers/security.php';
